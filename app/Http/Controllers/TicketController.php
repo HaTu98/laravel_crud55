@@ -65,4 +65,12 @@ class TicketController extends Controller
         
         return $data;
 	}
+
+	public function destroy($id)
+    {
+        $ticket = Ticket::find($id);
+        $ticket->delete();
+
+        return redirect('/home')->with('success', 'Ticket has been deleted!!');
+    }
 }
