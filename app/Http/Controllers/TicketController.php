@@ -40,4 +40,29 @@ class TicketController extends Controller
 
         return view('user.edit', compact('ticket', 'id'));
     }
+
+     public function update(Request $request, $id)
+    {
+        $ticket = new Ticket();
+        $data = $this->validate($request, [
+            'description'=>'required',
+            'title'=> 'required'
+        ]);
+        $data['id'] = $id;
+        $this->updateTicket($data);
+
+        return redirect('/home')->with('success', 'New support ticket has been updated!!');
+    }
+
+    public function updateTicket($data)
+	{	
+         $id = $data['id'];
+        $test = Ticket::where('id',$id)->update([
+        	'title'=>$data['title'],
+        	'description'=>$data['description']
+        ]);
+    
+        
+        return $data;
+	}
 }
