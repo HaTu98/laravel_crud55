@@ -25,12 +25,10 @@ class TicketController extends Controller
         return redirect('/home')->with('success', 'New support ticket has been created! Wait sometime to get resolved');
     }
 
-    public function saveTicket($data)
-	{
-        $this->user_id = auth()->user()->id;
-        $this->title = $data['title'];
-        $this->description = $data['description'];
-        $this->save();
-        return 1;
-	}
+	public function index()
+    {
+        $tickets = Ticket::where('user_id', auth()->user()->id)->get();
+        
+        return view('user.index',compact('tickets'));
+    }
 }
