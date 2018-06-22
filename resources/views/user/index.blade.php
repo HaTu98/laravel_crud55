@@ -17,8 +17,7 @@
                 <td>{{$ticket->id}}</td>
                 <td>{{$ticket->title}}</td>
                 <td>{{$ticket->description}}</td>
-                <td>Edit</td>
-                <td>Delete</td>
+                <td><a href="{{action('TicketController@edit',$ticket->id)}}" class="btn btn-primary">Edit</a></td>
             </tr>
             @endforeach
         </tbody>

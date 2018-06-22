@@ -31,4 +31,13 @@ class TicketController extends Controller
         
         return view('user.index',compact('tickets'));
     }
+
+    public function edit($id)
+    {
+        $ticket = Ticket::where('user_id', auth()->user()->id)
+                        ->where('id', $id)
+                        ->first();
+
+        return view('user.edit', compact('ticket', 'id'));
+    }
 }
